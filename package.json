@@ -1,0 +1,35 @@
+{
+  "name": "birds-on-earth-radio-globe",
+  "version": "1.0.0",
+  "description": "Interactive 3D globe visualization combining bird sightings from eBird with radio station data",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "serve": "npx http-server . -p 8000 -c-1"
+  },
+  "keywords": [
+    "birds",
+    "radio",
+    "ebird",
+    "globe",
+    "visualization",
+    "threejs",
+    "ecology",
+    "ornithology"
+  ],
+  "author": "Orwebcraft Ecologists Association",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Orwebcraft-ecologists-association/Birds-on-Earth-Radio-globe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Orwebcraft-ecologists-association/Birds-on-Earth-Radio-globe/issues"
+  },
+  "homepage": "https://github.com/Orwebcraft-ecologists-association/Birds-on-Earth-Radio-globe#readme"
+}

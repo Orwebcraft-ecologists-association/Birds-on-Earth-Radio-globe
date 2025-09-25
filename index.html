@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birds on Earth Radio Globe</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Birds on Earth Radio Globe</h1>
+            <p>Explore bird sightings from eBird and radio stations around the world</p>
+        </header>
+        
+        <div id="controls">
+            <div class="control-group">
+                <label for="data-toggle">Data Layer:</label>
+                <select id="data-toggle">
+                    <option value="birds">Bird Sightings</option>
+                    <option value="radio">Radio Stations</option>
+                    <option value="both">Both</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="region-filter">Region:</label>
+                <select id="region-filter">
+                    <option value="all">All Regions</option>
+                    <option value="north-america">North America</option>
+                    <option value="south-america">South America</option>
+                    <option value="europe">Europe</option>
+                    <option value="africa">Africa</option>
+                    <option value="asia">Asia</option>
+                    <option value="oceania">Oceania</option>
+                </select>
+            </div>
+            
+            <button id="refresh-data">Refresh Data</button>
+        </div>
+        
+        <div id="globe-container">
+            <canvas id="globe-canvas"></canvas>
+            <div id="loading" class="hidden">Loading data...</div>
+        </div>
+        
+        <div id="info-panel" class="hidden">
+            <div id="info-content">
+                <h3 id="info-title"></h3>
+                <div id="info-details"></div>
+                <button id="close-info">×</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Data sources: <a href="https://ebird.org" target="_blank">eBird</a> | 
+               Built for ecological research and radio enthusiasts</p>
+        </footer>
+    </div>
+    
+    <script src="three.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
