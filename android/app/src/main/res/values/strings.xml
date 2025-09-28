@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Birds on Earth Radio Globe</string>
+    <string name="title_activity_main">Birds on Earth Radio Globe</string>
+    <string name="package_name">com.birdsonearthradio.globe</string>
+    <string name="custom_url_scheme">com.birdsonearthradio.globe</string>
+</resources>
