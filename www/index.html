@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birds on Earth Radio Globe</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .globe-placeholder {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #4CAF50, #2196F3);
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .controls {
+            margin-top: 30px;
+        }
+        button {
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌍 Birds on Earth Radio Globe 📻</h1>
+        <p>Explore the real-time soundscape of our planet. Tune into live birdsong or listen to thousands of global radio stations on an interactive 3D globe.</p>
+        
+        <div class="globe-placeholder">
+            🌍 Interactive Globe
+        </div>
+        
+        <div class="controls">
+            <button onclick="switchToBirds()">🐦 Listen to Birds</button>
+            <button onclick="switchToRadio()">📻 Listen to Radio</button>
+        </div>
+        
+        <p id="status">Ready to explore the world's sounds!</p>
+    </div>
+
+    <script>
+        function switchToBirds() {
+            document.getElementById('status').textContent = '🐦 Now listening to birds from around the world...';
+        }
+        
+        function switchToRadio() {
+            document.getElementById('status').textContent = '📻 Now tuning into global radio stations...';
+        }
+        
+        // Simple animation for the globe
+        const globe = document.querySelector('.globe-placeholder');
+        let rotation = 0;
+        setInterval(() => {
+            rotation += 0.5;
+            globe.style.transform = `rotate(${rotation}deg)`;
+        }, 50);
+    </script>
+</body>
+</html>

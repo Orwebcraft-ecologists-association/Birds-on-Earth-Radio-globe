@@ -74,3 +74,41 @@ eBird API / Xeno-canto API: For sourcing bird data and recordings.
 Google Maps API / Mapbox: For geographical data and mapping.
 
 Machine Learning Model (e.g., TensorFlow.js): For real-time bird sound identification.
+
+## 📱 Mobile App (Android)
+
+This project includes an Android mobile app built with Capacitor that wraps the web application for mobile devices.
+
+### Building Android App Bundle (AAB) for Google Play
+
+To create an AAB file for uploading to Google Play Console:
+
+```bash
+# Quick build (debug)
+npm run build:aab:debug
+
+# Production build (release)
+npm run build:aab
+
+# Or use the build script
+./build-aab.sh debug    # for debug build
+./build-aab.sh release  # for release build
+```
+
+The generated AAB files will be located at:
+- Debug: `android/app/build/outputs/bundle/debug/app-debug.aab`
+- Release: `android/app/build/outputs/bundle/release/app-release.aab`
+
+For detailed instructions, see [BUILD_AAB.md](BUILD_AAB.md).
+
+### App Details
+- **Package ID**: `com.birdsonearthradio.globe`
+- **App Name**: Birds on Earth Radio Globe
+- **Target Platforms**: Android 7.0+ (API 24+)
+
+### Features
+- Interactive 3D globe visualization
+- Real-time birdsong streaming
+- Global radio station access
+- Location-based content
+- Offline-capable web technologies

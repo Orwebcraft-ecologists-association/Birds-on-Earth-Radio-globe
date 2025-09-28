@@ -1,0 +1,29 @@
+{
+  "name": "birds-on-earth-radio-globe",
+  "version": "1.0.0",
+  "description": "Birds-on-Earth-Radio-globe Explore the real-time soundscape of our planet. Tune into live birdsong or listen to thousands of global radio stations on an interactive 3D globe. Experience the rich auditory tapestry of nature and human culture, side-by-side.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:web": "echo \"Web build complete - static files ready\"",
+    "build:android": "npx cap copy android && npx cap sync android",
+    "build:aab": "npm run build:web && npm run build:android && cd android && ./gradlew bundleRelease",
+    "build:aab:debug": "npm run build:web && npm run build:android && cd android && ./gradlew bundleDebug"
+  },
+  "keywords": [
+    "birds",
+    "radio",
+    "globe",
+    "nature",
+    "sounds",
+    "android",
+    "mobile"
+  ],
+  "author": "Orwebcraft Ecologists Association",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/cli": "^7.4.3",
+    "@capacitor/core": "^7.4.3"
+  }
+}
