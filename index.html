@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birds On Earth Radio Globe</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <h1>🌍 Birds On Earth Radio</h1>
+            <div class="loading-spinner"></div>
+            <p>Loading the world...</p>
+        </div>
+    </div>
+
+    <!-- Globe Container -->
+    <div id="globe-container"></div>
+
+    <!-- UI Panel -->
+    <div id="ui-panel" class="panel">
+        <div class="panel-header">
+            <h2>🌍 Birds On Earth Radio</h2>
+            <button id="mode-toggle" class="btn-toggle">
+                <span id="mode-icon">🦜</span>
+                <span id="mode-text">Birds Mode</span>
+            </button>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" data-tab="search">Search</button>
+            <button class="tab-btn" data-tab="detections">Detections</button>
+            <button class="tab-btn" data-tab="favorites">Favorites</button>
+        </div>
+
+        <!-- Search Tab -->
+        <div id="search-tab" class="tab-content active">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search stations or birds...">
+                <button id="search-btn" class="btn-primary">Search</button>
+            </div>
+            
+            <div class="filter-section">
+                <select id="continent-filter">
+                    <option value="">All Continents</option>
+                    <option value="AF">Africa</option>
+                    <option value="AS">Asia</option>
+                    <option value="EU">Europe</option>
+                    <option value="NA">North America</option>
+                    <option value="OC">Oceania</option>
+                    <option value="SA">South America</option>
+                </select>
+                <select id="country-filter">
+                    <option value="">All Countries</option>
+                </select>
+            </div>
+
+            <div id="results-list" class="results-list"></div>
+        </div>
+
+        <!-- Detections Tab -->
+        <div id="detections-tab" class="tab-content">
+            <!-- Search History Section -->
+            <div class="history-section">
+                <div class="history-header" id="history-header">
+                    <h3>📜 Search History</h3>
+                    <button class="collapse-btn" id="history-collapse-btn">▼</button>
+                </div>
+                <div id="history-content" class="history-content">
+                    <div class="history-list-container">
+                        <div class="history-list">
+                            <h4>Radio Stations</h4>
+                            <div id="station-history"></div>
+                            <button class="btn-clear" id="clear-station-history">Clear</button>
+                        </div>
+                        <div class="history-list">
+                            <h4>Birds</h4>
+                            <div id="bird-history"></div>
+                            <button class="btn-clear" id="clear-bird-history">Clear</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detections-container">
+                <h3>Current Detections</h3>
+                <div id="detection-list"></div>
+            </div>
+        </div>
+
+        <!-- Favorites Tab -->
+        <div id="favorites-tab" class="tab-content">
+            <div class="favorites-container">
+                <h3>⭐ Favorite Stations</h3>
+                <div id="favorites-list"></div>
+            </div>
+        </div>
+
+        <!-- Control Panel -->
+        <div class="controls">
+            <button id="play-pause-btn" class="btn-control" disabled>
+                <span id="play-icon">▶️</span>
+            </button>
+            <input type="range" id="volume-slider" min="0" max="100" value="70" class="volume-slider">
+            <span id="volume-label">70%</span>
+        </div>
+
+        <!-- Current Playing Info -->
+        <div id="now-playing" class="now-playing">
+            <div id="station-info">Select a station to start</div>
+        </div>
+
+        <!-- Footer Buttons -->
+        <div class="footer-buttons">
+            <button id="download-btn" class="btn-secondary">📥 Downloads</button>
+            <button id="submit-station-btn" class="btn-secondary">➕ Submit Station</button>
+            <button id="about-btn" class="btn-secondary">ℹ️ About</button>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div id="about-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>About Birds On Earth Radio</h2>
+            <p>Explore the real-time soundscape of our planet. Tune into live birdsong or listen to thousands of global radio stations on an interactive 3D globe.</p>
+            <p><strong>Version:</strong> 1.23</p>
+            
+            <!-- Admin Mode Section -->
+            <div id="admin-section">
+                <div class="admin-toggle">
+                    <button id="admin-toggle-btn" class="btn-icon" title="Admin Mode">⚙️</button>
+                </div>
+                <div id="admin-panel" style="display: none;">
+                    <h3>Pending Station Submissions</h3>
+                    <div id="pending-stations-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit Station Modal -->
+    <div id="submit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Submit a Radio Station</h2>
+            <form id="submit-station-form">
+                <input type="text" id="station-name" placeholder="Station Name" required>
+                <input type="url" id="station-url" placeholder="Stream URL" required>
+                <input type="text" id="station-country" placeholder="Country" required>
+                <input type="number" id="station-lat" placeholder="Latitude" step="0.0001" required>
+                <input type="number" id="station-lon" placeholder="Longitude" step="0.0001" required>
+                <button type="submit" class="btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Download Modal -->
+    <div id="download-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Download Packs</h2>
+            <div class="download-options">
+                <button class="btn-download" id="download-birds-pack">🦜 Download Birds Pack</button>
+                <button class="btn-download" id="download-radio-pack">📻 Download Radio Pack</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Scripts -->
+    <script src="mock-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

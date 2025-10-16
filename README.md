@@ -49,28 +49,84 @@ The project is built using a modern and scalable tech stack:
 
 Frontend:
 
-React / Vue.js / Svelte: A modern JavaScript framework for building the user interface.
+HTML5, CSS3, JavaScript (Vanilla): Core web technologies for building the user interface.
 
-Three.js / Deck.gl: A 3D graphics library for creating the interactive globe.
-
-D3.js: For data visualization and mapping.
-
-Backend:
-
-Node.js with Express / Python with Flask or Django: A robust backend for handling data and serving audio streams.
-
-WebSockets / Socket.IO: For real-time communication between the client and server.
-
-Database:
-
-PostgreSQL / MongoDB: To store information about species, locations, radio stations, and user contributions.
+Three.js: A 3D graphics library for creating the interactive globe.
 
 APIs and Services:
 
 radio-browser.info API: For sourcing the comprehensive list of global radio stations.
 
-eBird API / Xeno-canto API: For sourcing bird data and recordings.
+Local Storage: For persisting user data (favorites, search history, station submissions).
 
-Google Maps API / Mapbox: For geographical data and mapping.
+## 🚀 Getting Started
 
-Machine Learning Model (e.g., TensorFlow.js): For real-time bird sound identification.
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Orwebcraft-ecologists-association/Birds-on-Earth-Radio-globe.git
+cd Birds-on-Earth-Radio-globe
+```
+
+2. Open `index.html` in a modern web browser or serve it using a local web server:
+```bash
+# Using Python
+python -m http.server 8000
+
+# Using Node.js http-server
+npx http-server
+```
+
+3. Navigate to `http://localhost:8000` in your browser.
+
+### Features Implemented (Version 1.23)
+
+#### Admin Mode
+- Toggle admin mode via the gear icon (⚙️) in the About modal
+- Approve or reject pending station submissions
+- Approved stations are immediately added to the globe
+- All changes persist locally in browser storage
+
+#### Search History
+- Tracks last 5 searches for both radio stations and bird species
+- Collapsible interface in the Detections tab
+- Click any history item to re-search
+- Clear button for each category (stations/birds)
+- Persistent across browser sessions
+
+#### Station Status Checker
+- Background check runs on app load and every 5 minutes
+- Checks all favorite stations for online/offline status
+- Visual indicators:
+  - Red markers on globe for offline stations
+  - Red "offline" badge in station lists
+  - Status updates automatically
+
+#### Other Features
+- Interactive 3D globe with real radio station locations
+- Dual mode: Radio stations and bird sounds
+- Favorite stations with star icon
+- Station submission system
+- Download packs for birds and radio stations
+- Real-time audio playback from thousands of global stations
+- Continent and country filtering
+
+### Usage
+
+1. **Browse Stations**: Click and drag to rotate the globe, scroll to zoom
+2. **Search**: Enter station name or location in the search box
+3. **Play**: Click any station to start playback
+4. **Add Favorites**: Click the star icon to add/remove favorites
+5. **Submit Station**: Click "➕ Submit Station" to add new stations
+6. **Admin Mode**: Click the gear icon in About modal to manage submissions
+7. **View History**: Go to Detections tab to see search history
+
+### Browser Compatibility
+
+- Chrome/Edge (recommended)
+- Firefox
+- Safari
+- Opera
+
+Requires a modern browser with WebGL support for 3D globe rendering.
