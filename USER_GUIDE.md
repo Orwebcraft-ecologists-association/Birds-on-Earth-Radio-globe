@@ -85,10 +85,12 @@ The application automatically checks the status of your favorite stations:
 - **Status Dot**: Small colored circle shows online/offline status
 
 ### How It Works
-1. The checker queries each favorite station's status
+1. The checker simulates status checks for each favorite station (in production, this would query actual station APIs)
 2. Results are cached in localStorage
 3. Markers and UI update automatically
 4. If an offline station comes back online, it automatically turns green
+
+*Note: In this demo version, station status is simulated. In a production environment, this would query actual radio station APIs.*
 
 ## Favorites
 
@@ -139,7 +141,7 @@ Click the filled **⭐ star icon** to unfavorite a station
 2. Choose which pack to download
 3. Follow the browser's download prompts
 
-*Note: In this version, downloads show informational alerts. In production, they would trigger actual file downloads.*
+*Note: In this demo version, downloads display informational alerts. In a production environment, these would trigger actual file downloads with packaged content.*
 
 ## Keyboard Shortcuts
 
