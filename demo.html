@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birds On Earth Radio - Feature Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        .feature-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-card p {
+            margin-bottom: 10px;
+        }
+        .feature-card ul {
+            margin-left: 20px;
+        }
+        .launch-button {
+            display: block;
+            width: 300px;
+            margin: 30px auto;
+            padding: 20px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .launch-button:hover {
+            transform: translateY(-5px);
+        }
+        .version {
+            text-align: center;
+            margin-top: 30px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌍 Birds On Earth Radio</h1>
+    <p style="text-align: center; font-size: 1.2rem; margin-bottom: 30px;">
+        Demo application showcasing an interactive soundscape explorer
+    </p>
+
+    <div style="background: rgba(255, 193, 7, 0.2); border: 2px solid rgba(255, 193, 7, 0.5); padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+        <strong>⚠️ Demo Version</strong><br>
+        This is a demonstration version using mock data and simulated features. 
+        In production, it would connect to live radio station APIs and bird sound databases.
+    </div>
+
+    <a href="index.html" class="launch-button">🚀 Launch Application</a>
+
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h2>⚙️ Admin Mode</h2>
+            <p>Powerful station management system:</p>
+            <ul>
+                <li>Toggle via gear icon in About modal</li>
+                <li>Approve or reject pending stations</li>
+                <li>Instant updates to the globe</li>
+                <li>Persistent localStorage storage</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <h2>📜 Search History</h2>
+            <p>Never lose track of your searches:</p>
+            <ul>
+                <li>Last 5 searches saved</li>
+                <li>Separate lists for stations & birds</li>
+                <li>Click to re-search instantly</li>
+                <li>Collapsible UI in Detections tab</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <h2>🔴 Status Checker</h2>
+            <p>Always know which stations are online:</p>
+            <ul>
+                <li>Checks on app load</li>
+                <li>Background checks every 5 minutes</li>
+                <li>Red markers for offline stations</li>
+                <li>Visual indicators throughout UI</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <h2>⭐ Favorites</h2>
+            <p>Save your favorite stations:</p>
+            <ul>
+                <li>Star/unstar with one click</li>
+                <li>Dedicated Favorites tab</li>
+                <li>Persistent across sessions</li>
+                <li>Status indicators included</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <h2>🌐 Interactive Globe</h2>
+            <p>Beautiful 2D canvas visualization:</p>
+            <ul>
+                <li>Auto-rotating Earth</li>
+                <li>20 global radio stations</li>
+                <li>Clickable station markers</li>
+                <li>Green/red status indicators</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <h2>➕ Submit Stations</h2>
+            <p>Community-driven content:</p>
+            <ul>
+                <li>Easy submission form</li>
+                <li>Admin review system</li>
+                <li>Instant approval workflow</li>
+                <li>Persistent pending queue</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <h2>🦜 Dual Mode</h2>
+            <p>Birds and Radio in one app:</p>
+            <ul>
+                <li>Toggle between modes</li>
+                <li>Separate search histories</li>
+                <li>Distinct visual styles</li>
+                <li>Unified interface</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <h2>📥 Downloads</h2>
+            <p>Take content offline:</p>
+            <ul>
+                <li>Bird sound packs</li>
+                <li>Radio station collections</li>
+                <li>Easy download interface</li>
+                <li>Organized by category</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <h2>🎨 Beautiful UI</h2>
+            <p>Modern, responsive design:</p>
+            <ul>
+                <li>Gradient backgrounds</li>
+                <li>Smooth animations</li>
+                <li>Glass-morphism effects</li>
+                <li>Mobile-friendly layout</li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="background: rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 12px; margin-top: 30px;">
+        <h2 style="text-align: center;">Quick Start Guide</h2>
+        <ol style="max-width: 600px; margin: 20px auto;">
+            <li><strong>Launch</strong> the application using the button above</li>
+            <li><strong>Search</strong> for a radio station (try "BBC" or "NPR")</li>
+            <li><strong>Click a station</strong> to start playing</li>
+            <li><strong>Star it</strong> to add to favorites</li>
+            <li><strong>Check Detections tab</strong> to see your search history</li>
+            <li><strong>Open About modal</strong> and click the gear icon for Admin Mode</li>
+            <li><strong>Submit a station</strong> to test the approval workflow</li>
+        </ol>
+    </div>
+
+    <div class="version">
+        <p><strong>Version 1.23</strong></p>
+        <p>Built with HTML5, CSS3, and JavaScript</p>
+        <p>No dependencies • Runs entirely in browser • localStorage powered</p>
+    </div>
+
+    <a href="index.html" class="launch-button" style="margin-top: 30px;">🚀 Launch Application</a>
+</body>
+</html>
