@@ -1,10 +1,10 @@
 // Birds On Earth Radio Application
 // Version 1.23 - Demo Version
-// 
+//
 // This is a demonstration implementation using mock data and simulated features.
 // Production version would integrate with:
 // - Radio Browser API for live station data
-// - eBird/Xeno-canto APIs for bird recordings  
+// - eBird/Xeno-canto APIs for bird recordings
 // - Real-time stream status checking
 // - Actual audio streaming infrastructure
 
