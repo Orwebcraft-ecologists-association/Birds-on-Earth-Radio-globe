@@ -319,21 +319,22 @@
             <div class="controls">
                 <div class="control-group">
                     <label for="country-select">Select Country:</label>
-                    <select id="country-select">
+                    <select id="country-select" aria-label="Select a country to filter radio stations" aria-describedby="country-help">
                         <option value="">All Countries</option>
-                        <option value="Israel">🇮🇱 Israel</option>
-                        <option value="United States">🇺🇸 United States</option>
-                        <option value="United Kingdom">🇬🇧 United Kingdom</option>
-                        <option value="Germany">🇩🇪 Germany</option>
-                        <option value="France">🇫🇷 France</option>
-                        <option value="Italy">🇮🇹 Italy</option>
-                        <option value="Spain">🇪🇸 Spain</option>
-                        <option value="Canada">🇨🇦 Canada</option>
-                        <option value="Australia">🇦🇺 Australia</option>
-                        <option value="Japan">🇯🇵 Japan</option>
-                        <option value="Brazil">🇧🇷 Brazil</option>
-                        <option value="India">🇮🇳 India</option>
+                        <option value="Israel">Israel</option>
+                        <option value="United States">United States</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="Germany">Germany</option>
+                        <option value="France">France</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Spain">Spain</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="India">India</option>
                     </select>
+                    <span id="country-help" style="display:none;">Select a country to filter radio stations from that region</span>
                 </div>
 
                 <div class="control-group">

@@ -9,6 +9,9 @@ class RadioGlobeApp {
         this.audioPlayer = document.getElementById('audio-player');
         this.isPlaying = false;
         
+        // Configuration constants
+        this.QUICK_VALIDATION_LIMIT = 20; // Number of stations to validate immediately
+        
         // Radio Browser API endpoints (with fallbacks)
         this.apiEndpoints = [
             'https://de1.api.radio-browser.info',
@@ -16,6 +19,16 @@ class RadioGlobeApp {
             'https://at1.api.radio-browser.info'
         ];
         this.currentApiIndex = 0;
+        
+        // HTML escape map for XSS prevention
+        this.htmlEscapeMap = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#x27;',
+            '/': '&#x2F;'
+        };
         
         this.initializeEventListeners();
         this.setupAudioPlayer();
@@ -177,18 +190,25 @@ class RadioGlobeApp {
     }
 
     async quickValidateStations() {
-        // Quick validation by checking if URL is accessible
-        const validationPromises = this.stations.slice(0, 20).map(async (station) => {
+        // Quick validation by checking if station has valid resolved URL
+        const validationPromises = this.stations.slice(0, this.QUICK_VALIDATION_LIMIT).map(async (station) => {
             try {
-                // Check if the station has a valid URL and resolve URL
-                if (station.url_resolved) {
-                    station.working = true;
-                    station.tested = true;
+                // Check if the station has a valid URL and validate it
+                if (station.url_resolved && station.url_resolved.trim() !== '') {
+                    const url = new URL(station.url_resolved);
+                    if (url.protocol === 'http:' || url.protocol === 'https:') {
+                        station.working = true;
+                        station.tested = true;
+                    } else {
+                        station.working = false;
+                        station.tested = true;
+                    }
                 } else {
                     station.working = false;
                     station.tested = true;
                 }
             } catch (error) {
+                // URL parsing failed, mark as broken
                 station.working = false;
                 station.tested = true;
             }
@@ -289,28 +309,31 @@ class RadioGlobeApp {
 
             return `
                 <div class="station-item ${statusClass} ${isActive ? 'active' : ''}" 
-                     data-station-id="${station.stationuuid}">
+                     data-station-id="${this.escapeHtml(station.stationuuid)}">
                     <div class="station-name">${this.escapeHtml(station.name)}</div>
                     <div class="station-info">
                         ${station.country ? '🌍 ' + this.escapeHtml(station.country) : ''}
                         ${station.tags ? ' | 🏷️ ' + this.escapeHtml(station.tags.split(',')[0]) : ''}
-                        ${station.bitrate ? ' | 📡 ' + station.bitrate + 'kbps' : ''}
+                        ${station.bitrate ? ' | 📡 ' + this.escapeHtml(String(station.bitrate)) + 'kbps' : ''}
                     </div>
                     ${statusText ? `<div class="station-status">${statusText}</div>` : ''}
                 </div>
             `;
         }).join('');
 
-        // Add click listeners to station items
-        document.querySelectorAll('.station-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const stationId = item.getAttribute('data-station-id');
+        // Use event delegation instead of multiple listeners
+        stationList.removeEventListener('click', this.stationListClickHandler);
+        this.stationListClickHandler = (e) => {
+            const stationItem = e.target.closest('.station-item');
+            if (stationItem) {
+                const stationId = stationItem.getAttribute('data-station-id');
                 const station = this.stations.find(s => s.stationuuid === stationId);
                 if (station) {
                     this.selectStation(station);
                 }
-            });
-        });
+            }
+        };
+        stationList.addEventListener('click', this.stationListClickHandler);
 
         // Hide welcome message
         document.getElementById('welcome-message').style.display = 'none';
@@ -323,11 +346,11 @@ class RadioGlobeApp {
         document.getElementById('player').style.display = 'block';
         document.getElementById('player-title').textContent = station.name;
         document.getElementById('player-details').innerHTML = `
-            <strong>Country:</strong> ${station.country || 'Unknown'}<br>
-            <strong>Language:</strong> ${station.language || 'Unknown'}<br>
-            <strong>Tags:</strong> ${station.tags || 'None'}<br>
-            <strong>Bitrate:</strong> ${station.bitrate || 'Unknown'}kbps<br>
-            <strong>Codec:</strong> ${station.codec || 'Unknown'}
+            <strong>Country:</strong> ${this.escapeHtml(station.country || 'Unknown')}<br>
+            <strong>Language:</strong> ${this.escapeHtml(station.language || 'Unknown')}<br>
+            <strong>Tags:</strong> ${this.escapeHtml(station.tags || 'None')}<br>
+            <strong>Bitrate:</strong> ${this.escapeHtml(String(station.bitrate || 'Unknown'))}kbps<br>
+            <strong>Codec:</strong> ${this.escapeHtml(station.codec || 'Unknown')}
         `;
 
         // Load the station
@@ -466,9 +489,9 @@ class RadioGlobeApp {
     }
 
     escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
+        // Efficient HTML escaping using character replacement
+        if (text == null) return '';
+        return String(text).replace(/[&<>"'\/]/g, (char) => this.htmlEscapeMap[char]);
     }
 }
 
