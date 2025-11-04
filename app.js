@@ -143,7 +143,7 @@ class RadioGlobeApp {
             // For Israel, perform immediate validation
             if (country === 'Israel') {
                 this.showStatus('Found ' + this.stations.length + ' Israeli stations. Validating...', 'info');
-                await this.quickValidateStations();
+                this.quickValidateStations();
             } else {
                 this.showStatus('Loaded ' + this.stations.length + ' stations', 'success');
             }
@@ -189,32 +189,28 @@ class RadioGlobeApp {
         }
     }
 
-    async quickValidateStations() {
-        // Quick validation by checking if station has valid resolved URL
-        const validationPromises = this.stations.slice(0, this.QUICK_VALIDATION_LIMIT).map(async (station) => {
-            try {
-                // Check if the station has a valid URL and validate it
-                if (station.url_resolved && station.url_resolved.trim() !== '') {
-                    const url = new URL(station.url_resolved);
-                    if (url.protocol === 'http:' || url.protocol === 'https:') {
-                        station.working = true;
-                        station.tested = true;
-                    } else {
-                        station.working = false;
-                        station.tested = true;
-                    }
-                } else {
-                    station.working = false;
-                    station.tested = true;
+    validateStationUrl(station) {
+        // Validates station URL and returns true if working
+        try {
+            if (station.url_resolved && station.url_resolved.trim() !== '') {
+                const url = new URL(station.url_resolved);
+                if (url.protocol === 'http:' || url.protocol === 'https:') {
+                    return true;
                 }
-            } catch (error) {
-                // URL parsing failed, mark as broken
-                station.working = false;
-                station.tested = true;
             }
-        });
+            return false;
+        } catch (error) {
+            // URL parsing failed
+            return false;
+        }
+    }
 
-        await Promise.all(validationPromises);
+    quickValidateStations() {
+        // Quick validation by checking if station has valid resolved URL
+        this.stations.slice(0, this.QUICK_VALIDATION_LIMIT).forEach(station => {
+            station.working = this.validateStationUrl(station);
+            station.tested = true;
+        });
         
         // Sort stations to show working ones first
         this.stations.sort((a, b) => {
@@ -236,28 +232,12 @@ class RadioGlobeApp {
         let brokenCount = 0;
 
         for (const station of this.stations) {
-            try {
-                // Test if station has a resolved URL
-                if (station.url_resolved && station.url_resolved.trim() !== '') {
-                    // Additional check: verify the URL is valid
-                    const url = new URL(station.url_resolved);
-                    if (url.protocol === 'http:' || url.protocol === 'https:') {
-                        station.working = true;
-                        station.tested = true;
-                        workingCount++;
-                    } else {
-                        station.working = false;
-                        station.tested = true;
-                        brokenCount++;
-                    }
-                } else {
-                    station.working = false;
-                    station.tested = true;
-                    brokenCount++;
-                }
-            } catch (error) {
-                station.working = false;
-                station.tested = true;
+            station.working = this.validateStationUrl(station);
+            station.tested = true;
+            
+            if (station.working) {
+                workingCount++;
+            } else {
                 brokenCount++;
             }
         }
