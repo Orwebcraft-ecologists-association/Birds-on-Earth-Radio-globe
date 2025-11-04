@@ -1,0 +1,29 @@
+{
+  "name": "birds-on-earth-radio-globe",
+  "version": "1.0.0",
+  "description": "Explore the real-time soundscape of our planet. Tune into live birdsong or listen to thousands of global radio stations on an interactive 3D globe.",
+  "main": "app.js",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Orwebcraft-ecologists-association/Birds-on-Earth-Radio-globe.git"
+  },
+  "keywords": [
+    "radio",
+    "globe",
+    "birdsong",
+    "streaming",
+    "radio-browser",
+    "israel",
+    "world-radio"
+  ],
+  "author": "Orwebcraft Ecologists Association",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Orwebcraft-ecologists-association/Birds-on-Earth-Radio-globe/issues"
+  },
+  "homepage": "https://github.com/Orwebcraft-ecologists-association/Birds-on-Earth-Radio-globe#readme"
+}
